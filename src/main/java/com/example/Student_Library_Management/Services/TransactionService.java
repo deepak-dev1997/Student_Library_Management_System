@@ -58,9 +58,9 @@ public class TransactionService {
 
         book.setIssued(true);
 
-        List<Transactions> listOfTransaction=book.getListOfTransations();
+        List<Transactions> listOfTransaction=book.getListOfTransactions();
         listOfTransaction.add(transactions);
-        book.setListOfTransations(listOfTransaction);
+        book.setListOfTransactions(listOfTransaction);
 
         List<Book> issuedBooksForCard= card.getBooksIssued();
         issuedBooksForCard.add(book);

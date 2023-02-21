@@ -21,21 +21,54 @@ public class Book {
     @Enumerated(value = EnumType.STRING)
     private Genre genre;
 
-    @ManyToOne
-    @JoinColumn
-    private Author author;
+    //Book is child wrt to author
+    //Setting here the foreign key : Standard 3 steps
 
+    @ManyToOne
+    @JoinColumn //Add an extra attribute of authorId (parent table PK) for the foreign key of child table
+    private Author author; //This is the parent entity we are connecting with
+
+
+    //Book is also child wrt Card...
     @ManyToOne
     @JoinColumn
     private Card card;
 
     private boolean issued;
 
-    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
-    private List<Transactions> listOfTransations=new ArrayList<>();
+
+
+    @OneToMany(mappedBy = "book",cascade = CascadeType.ALL)
+    private List<Transactions> listOfTransactions = new ArrayList<>();
+
+
+    public List<Transactions> getListOfTransactions() {
+        return listOfTransactions;
+    }
+
+    public void setListOfTransactions(List<Transactions> listOfTransactions) {
+        this.listOfTransactions = listOfTransactions;
+    }
+
+    public Card getCard() {
+        return card;
+    }
+
+    public void setCard(Card card) {
+        this.card = card;
+    }
+
+    public boolean isIssued() {
+        return issued;
+    }
+
+    public void setIssued(boolean issued) {
+        this.issued = issued;
+    }
 
     public Book() {
     }
+
 
     public int getId() {
         return id;
@@ -75,29 +108,5 @@ public class Book {
 
     public void setAuthor(Author author) {
         this.author = author;
-    }
-
-    public Card getCard() {
-        return card;
-    }
-
-    public void setCard(Card card) {
-        this.card = card;
-    }
-
-    public boolean isIssued() {
-        return issued;
-    }
-
-    public void setIssued(boolean issued) {
-        this.issued = issued;
-    }
-
-    public List<Transactions> getListOfTransations() {
-        return listOfTransations;
-    }
-
-    public void setListOfTransations(List<Transactions> listOfTransations) {
-        this.listOfTransations = listOfTransations;
     }
 }

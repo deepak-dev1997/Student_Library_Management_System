@@ -20,25 +20,40 @@ public class BookService {
     AuthorRespository authorRespository;
 
     public String addBook(BookRequestDto bookRequestDto){
-        int authorId=bookRequestDto.getAuthorId();
-        Author author=authorRespository.findById(authorId).get();
+        int authorId  = bookRequestDto.getAuthorId();
 
-        Book book=new Book();
+
+
+        Author author = authorRespository.findById(authorId).get();
+
+
+
+        Book book = new Book();
+
 
         book.setGenre(bookRequestDto.getGenre());
         book.setIssued(false);
-
         book.setName(bookRequestDto.getName());
         book.setPages(bookRequestDto.getPages());
 
+
+
         book.setAuthor(author);
 
-        List<Book> currentBooksWritten=author.getBooksWritten();
+
+
+
+        List<Book> currentBooksWritten = author.getBooksWritten();
         currentBooksWritten.add(book);
 
-        authorRespository.save(author);
 
-        return"Book added Successfully";
+
+
+        authorRespository.save(author); //Date was modified
+
+
+
+        return "Book Added successfully";
     }
 
 }

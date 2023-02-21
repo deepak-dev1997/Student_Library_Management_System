@@ -5,12 +5,14 @@ import com.example.Student_Library_Management.Enums.Genre;
 public class BookRequestDto {
 
     private String name;
+
     private int pages;
+
     private Genre genre;
+
     private int authorId;
 
     public BookRequestDto() {
-
     }
 
     public String getName() {
